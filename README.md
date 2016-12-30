@@ -2,6 +2,7 @@
 # Bufferlite
 
 **A Naive FIFO Buffer Queue with SQLite as persistence layer**
+
 Bufferlite implements a persistent FIFO buffer on top of sqlitex package.
 
 ## Installation
