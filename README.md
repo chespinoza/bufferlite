@@ -1,6 +1,8 @@
+[![License](https://img.shields.io/badge/license-MIT%20License-brightgreen.svg)](https://opensource.org/licenses/MIT)
 # Bufferlite
 
-**A Naive Persistent FIFO Buffer Queue on top of SQLite**
+**A Naive FIFO Buffer Queue with SQLite as persistence layer**
+Bufferlite implements a persistent FIFO buffer on top of sqlitex package.
 
 ## Installation
 
@@ -21,3 +23,7 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
       [applications: [:bufferlite]]
     end
     ```
+## Usage
+
+## License
+MIT
