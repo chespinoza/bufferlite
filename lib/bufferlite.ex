@@ -17,6 +17,11 @@ defmodule Bufferlite do
     {:reply, result, db}
   end
 
+  def handle_call({:del_buffer, buff_name}, _from, db) do
+      result = Sqlitex.exec(db, "DROP TABLE #{buff_name};")
+      {:reply, result, db}
+  end
+
   def handle_call({:push, buff_name, term}, _from, db) do
     data = :erlang.term_to_binary(term)
     case Sqlitex.query(db, "INSERT INTO #{buff_name} (data) VALUES ($1);", bind: [data]) do
@@ -54,10 +59,22 @@ defmodule Bufferlite do
     end
   end
 
+  def handle_call(:stop, db) do
+    {:stop, :normal, db}
+  end
+
+  def terminate(_reason, db) do
+    Sqlitex.close(db)
+  end
+
 ## Public API
 
   def new_buffer(pid, buff_name) do
     GenServer.call(pid, {:new_buffer, buff_name})
+  end
+
+  def del_buffer(pid, buff_name) do
+      GenServer.call(pid, {:del_buffer, buff_name})
   end
 
   def push(pid, buff_name, term) do
@@ -74,5 +91,9 @@ defmodule Bufferlite do
 
   def get_buffers(pid) do
     GenServer.call(pid, :get_buffers)
+  end
+
+  def stop(pid) do
+    GenServer.cast(pid, :stop)
   end
 end
