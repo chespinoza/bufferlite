@@ -25,6 +25,7 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
     end
     ```
   3. Use it to buffer any term.
+
   ```elixir
   >{:ok, pid} = Bufferlite.start_link("mybuff.db")
   >Bufferlite.new_buffer(pid, "buff")
