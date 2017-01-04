@@ -24,7 +24,7 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
       [applications: [:bufferlite]]
     end
     ```
-  3. Use it to buffer any term.
+  3. Use it to buffer any Elixir/Erlang term.
 
   ```elixir
   >{:ok, pid} = Bufferlite.start_link("mybuff.db")
