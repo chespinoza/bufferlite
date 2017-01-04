@@ -5,7 +5,7 @@
 
 Bufferlite implements a persistent FIFO buffer on top of sqlitex package.
 
-## Installation
+## Installation & Usage
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
 
@@ -24,7 +24,13 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
       [applications: [:bufferlite]]
     end
     ```
-## Usage
-
+  3. Use it to buffer any term.
+  ```elixir
+  >{:ok, pid} = Bufferlite.start_link("mybuff.db")
+  >Bufferlite.new_buffer(pid, "buff")
+  >Bufferlite.push(pid, "buff", {:ok, [1, 2, 3, 4], :some})
+  >Bufferlite.pop(pid, "buff")
+  {:ok, [1, 2, 3, 4], :some}
+  ```
 ## License
 MIT
